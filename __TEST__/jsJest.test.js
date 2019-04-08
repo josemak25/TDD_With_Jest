@@ -1,6 +1,6 @@
 const operations = require("../jsJest");
 
-//Checking for add function
+//Testing for add function
 
 test("adds the sum of two integer numbers.", () => {
   expect(operations.add(5, 5)).toBe(10);
@@ -16,7 +16,7 @@ test("if add params is empty or not a number.", () => {
   expect(throwError).toThrowError(Error);
 });
 
-//Checking for addInfinte function
+//Testing for addInfinte function
 
 test("it should return the sum of all infinite numbers.", () => {
   expect(operations.addInfinite(1, 2, 3, 5)).toBe(11);
@@ -33,7 +33,7 @@ test("if indefinite sum params is not a number.", () => {
   expect(throwError).toThrowError(Error);
 });
 
-//Checking for subtraction function
+//Testing for subtraction function
 test("subtraction and return the difference of two integer numbers.", () => {
   expect(operations.subtraction(10, 5)).toBe(5);
   expect(operations.subtraction(10, 10)).toBe(0);
@@ -49,7 +49,7 @@ test("if subtraction params is not a number. ", () => {
   expect(throwError).toThrowError(Error);
 });
 
-//Checking for multiInfinite function
+//Testing for multiInfinite function
 test("multiply and return the difference of indefinite integer numbers.", () => {
   expect(operations.multiInfinite(10, 5)).toBe(50);
   expect(operations.multiInfinite(10, 10)).toBe(100);
@@ -60,6 +60,22 @@ test("if multiInfinite params is not a number. ", () => {
   const throwError = () => {
     operations.multiInfinite("", undefined, 23, 3, 53);
     operations.multiInfinite("#", 12, "@", 35);
+  };
+  expect(throwError).toThrowError(Error);
+});
+
+//Testing for division function
+test("division and return result of two integer numbers.", () => {
+  expect(operations.divide(10, 5)).toBe(2);
+  expect(operations.divide(10, 10)).toBe(1);
+  expect(operations.divide(5, 10)).toBe(0.5);
+});
+
+test("if subtraction params is not a number. ", () => {
+  const throwError = () => {
+    operations.divide("", undefined);
+    operations.divide("#", 12);
+    operations.divide(23, null);
   };
   expect(throwError).toThrowError(Error);
 });
