@@ -27,6 +27,18 @@ const operations = {
     } else {
       return paramOne - paramTwo;
     }
+  },
+
+  //Multiplaction of Infinite Method
+  multiInfinite: (...params) => {
+    const result = params.reduce((curNum, nextNum) => {
+      if (isNaN(nextNum)) {
+        throw new Error("Please input only valid integer numbers");
+      } else {
+        return curNum * nextNum;
+      }
+    });
+    return result;
   }
 };
 module.exports = operations;
