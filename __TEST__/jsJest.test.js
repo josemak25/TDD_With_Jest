@@ -79,3 +79,19 @@ test("if subtraction params is not a number. ", () => {
   };
   expect(throwError).toThrowError(Error);
 });
+
+//Testing for string concatenate function
+test("concatenate and return result of two string.", () => {
+  expect(operations.strConcat("10", "5")).toBe("105");
+  expect(operations.strConcat("John", "Doe")).toBe("JohnDoe");
+  expect(operations.strConcat("-5", "10")).toBe("-510");
+});
+
+test("if concatenate params is not a number. ", () => {
+  const throwError = () => {
+    operations.strConcat("", 12);
+    operations.strConcat("#", 120);
+    operations.strConcat(23, null);
+  };
+  expect(throwError).toThrowError(Error);
+});
