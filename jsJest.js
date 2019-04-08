@@ -39,6 +39,15 @@ const operations = {
       }
     });
     return result;
+  },
+
+  //Division Method
+  divide: (paramOne, paramTwo) => {
+    if (isNaN(paramOne) || isNaN(paramTwo)) {
+      throw new Error("Please input a number to divide");
+    } else {
+      return paramOne / paramTwo;
+    }
   }
 };
 module.exports = operations;
