@@ -1,4 +1,5 @@
 const operations = {
+  //Addition Method
   add: (num1, num2) => {
     if (isNaN(num1) || isNaN(num2)) {
       throw new Error("Please input a number to add");
@@ -6,6 +7,8 @@ const operations = {
       return num1 + num2;
     }
   },
+
+  //Addition of Infinite Method
   addInfinite: (...params) => {
     const result = params.reduce((curNum, nextNum) => {
       if (isNaN(nextNum)) {
@@ -15,6 +18,11 @@ const operations = {
       }
     });
     return result;
+  },
+
+  //Subtraction Method
+  subtraction: (paramOne, paramTwo) => {
+    return paramOne - paramTwo;
   }
 };
 module.exports = operations;
