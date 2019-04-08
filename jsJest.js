@@ -22,7 +22,11 @@ const operations = {
 
   //Subtraction Method
   subtraction: (paramOne, paramTwo) => {
-    return paramOne - paramTwo;
+    if (isNaN(paramOne) || isNaN(paramTwo)) {
+      throw new Error("Please input a number to subtract");
+    } else {
+      return paramOne - paramTwo;
+    }
   }
 };
 module.exports = operations;
