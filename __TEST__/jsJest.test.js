@@ -21,10 +21,10 @@ test("if add params is empty or not a number.", () => {
 test("it should return the sum of all infinite numbers.", () => {
   expect(operations.addInfinite(1, 2, 3, 5)).toBe(11);
   expect(operations.addInfinite(100, 2, 3, 5)).toBe(110);
-  expect(operations.addInfinite(1, 12, 13, 50)).toBe(76);
+  expect(operations.addInfinite(-1, 2, 3, 5, 3 / 4, -1.43)).toBe(8.32);
 });
 
-test("if infinite sum params is not a number.", () => {
+test("if indefinite sum params is not a number.", () => {
   const throwError = () => {
     operations.addInfinite(1, 2, 3, undefined);
     operations.addInfinite("#", 12, 32, 43);
@@ -45,6 +45,21 @@ test("if subtraction params is not a number. ", () => {
     operations.addInfinite("", undefined);
     operations.addInfinite("#", 12);
     operations.addInfinite(null, 32);
+  };
+  expect(throwError).toThrowError(Error);
+});
+
+//Checking for multiInfinite function
+test("multiply and return the difference of indefinite integer numbers.", () => {
+  expect(operations.multiInfinite(10, 5)).toBe(50);
+  expect(operations.multiInfinite(10, 10)).toBe(100);
+  expect(operations.multiInfinite(-1, 2, 3, 5, 3 / 4, -1.43)).toBe(32.175);
+});
+
+test("if multiInfinite params is not a number. ", () => {
+  const throwError = () => {
+    operations.multiInfinite("", undefined, 23, 3, 53);
+    operations.multiInfinite("#", 12, "@", 35);
   };
   expect(throwError).toThrowError(Error);
 });
