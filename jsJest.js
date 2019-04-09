@@ -1,3 +1,5 @@
+const fetch = require("node-fetch");
+
 const operations = {
   //Addition Method
   add: (num1, num2) => {
@@ -8,7 +10,7 @@ const operations = {
     }
   },
 
-  //Addition of Infinite Method
+  //Addition of Indefinite Method
   addInfinite: (...params) => {
     const result = params.reduce((curNum, nextNum) => {
       if (Number(nextNum)) {
@@ -56,6 +58,20 @@ const operations = {
       throw new Error("Please input a string to concate");
     } else {
       return paramOne + paramTwo;
+    }
+  },
+
+  gitHubApi: async userName => {
+    const githubRes = await fetch(
+      `https://api.github.com/users/${userName}/repos`
+    );
+    const githubUser = await githubRes.json();
+    if (githubUser.hasOwnProperty("message")) {
+      throw new Error("User Not Found");
+    } else if (githubUser.length < 1) {
+      throw new Error("User Has No Repositories");
+    } else {
+      return githubUser.map(res => res.name);
     }
   }
 };
