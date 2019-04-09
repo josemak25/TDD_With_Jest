@@ -1,3 +1,4 @@
+const fetch = require("node-fetch");
 const gitHubApi = async userName => {
   console.log("we are sending request to the api");
   const githubRes = await fetch(

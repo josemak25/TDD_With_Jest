@@ -16,7 +16,7 @@ describe("add", () => {
     expect(addNumbers(100, 5)).toBe(105);
   });
   test("if add params is empty or not a number.", () => {
-    expect(addNumbers(null, "")).toBe("Please input a number to add");
+    expect(addNumbers(5)).toBe("Please input a number to add");
     expect(addNumbers(undefined, 120)).toBe("Please input a number to add");
     expect(addNumbers("#", 12)).toBe("Please input a number to add");
   });
@@ -85,7 +85,6 @@ describe("string concat", () => {
   });
 
   test("if concatenate params is not a number. ", () => {
-    stringConcat;
     expect(stringConcat(undefined, "")).toBe(
       "Please input a string to concate"
     );
@@ -109,4 +108,26 @@ describe("subtract", () => {
     );
   });
 });
-``
+
+// GitHub user api function
+
+describe("searching github api to return all user repos", () => {
+  test("if a searched user exits return all user repos on his repository", async done => {
+    gitHubApi("BigShark").then(repo => {
+      expect(repo).toEqual(["JavaEE"]);
+      done();
+    });
+  });
+  test("if a searched user dosent exits", async done => {
+    gitHubApi("BigShark120").then(repo => {
+      expect(repo).toBe("User Not Found");
+      done();
+    });
+  });
+  test("if a searched user exits but dosent have any repo", async done => {
+    gitHubApi("josemak").then(repo => {
+      expect(repo).toBe("User Has No Repositories");
+      done();
+    });
+  });
+});
