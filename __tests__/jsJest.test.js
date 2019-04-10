@@ -1,3 +1,10 @@
+const mockAxios = require("../controllers/__mocks__/axios");
+const {
+  userRepoData,
+  userExitNoRepo,
+  userNotFound
+} = require("../controllers/__mocks__/userRepoDB");
+
 const {
   addNumbers,
   addIndefinite,
@@ -138,23 +145,60 @@ describe("subtract", () => {
 
 // GitHub user api function
 
-// describe("searching github api to return all user repos", () => {
-//   test("if a searched user exits return all user repos on his repository", async done => {
-//     gitHubApi("BigShark").then(repo => {
-//       expect(repo).toEqual(["JavaEE"]);
-//       done();
-//     });
-//   });
-//   test("if a searched user dosent exits", async done => {
-//     gitHubApi("BigShark120").then(repo => {
-//       expect(repo).toBe("User Not Found");
-//       done();
-//     });
-//   });
-//   test("if a searched user exits but dosent have any repo", async done => {
-//     gitHubApi("josemak").then(repo => {
-//       expect(repo).toBe("User Has No Repositories");
-//       done();
-//     });
-//   });
-// });
+describe("gitHub Api mock test", () => {
+  test("check if axios made a GET method using the correct username inputed in gitHubApi function", async () => {
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(userRepoData));
+    const userRepos = await gitHubApi("Josemak25");
+    expect(mockAxios.get).toHaveBeenCalledWith(
+      "https://api.github.com/users/Josemak25/repos"
+    );
+  });
+
+  test("check if user repositories from response are all objects", async () => {
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(userRepoData));
+    const userRepos = await gitHubApi("AbetangJoseph");
+    expect(typeof userRepos.map(elem => elem)).toEqual("object");
+  });
+
+  test("check for response from githubDB to be an object", async () => {
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(userRepoData));
+    const userRepos = await gitHubApi("AbetangJoseph");
+    expect(typeof userRepos).toEqual("object");
+  });
+
+  test("check for names of repo from response", async () => {
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(userRepoData));
+    const userRepos = await gitHubApi("AbetangJoseph");
+    expect(userRepos.map(elem => elem.name)).toContain(
+      "EventManager",
+      "BootstrapGameTheme",
+      "BookBlogPost"
+    );
+  });
+
+  test("if a searched user exists but has no repo in his repository", async () => {
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(userExitNoRepo));
+    const userRepos = await gitHubApi("AbetangJoseph");
+    console.log(userRepos);
+    expect(userRepos).toBe("User Has No Repositories");
+  });
+
+  test("if a searched user dosent exits", async () => {
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(userNotFound));
+    const userRepos = await gitHubApi("AbetangJoseph");
+    expect(userRepos).toBe("User Not Found");
+  });
+
+  test("check if axios made a GET method call and its url path", async () => {
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(userRepoData));
+    const userRepos = await gitHubApi("AbetangJoseph");
+    expect(mockAxios.get).toHaveBeenCalledWith(
+      "https://api.github.com/users/AbetangJoseph/repos"
+    );
+  });
+  test("check for how many instances get method to was sent to our mock githubDB", async () => {
+    mockAxios.get.mockImplementationOnce(() => Promise.resolve(userRepoData));
+    const userRepos = await gitHubApi("AbetangJoseph");
+    expect(mockAxios.get).toHaveBeenCalledTimes(8);
+  });
+});
