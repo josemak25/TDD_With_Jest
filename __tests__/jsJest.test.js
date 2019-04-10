@@ -82,11 +82,13 @@ describe("multiply", () => {
 describe("division", () => {
   test("division and return result of two integer numbers.", () => {
     expect(divideNumber(10, 5)).toBe(2);
-    expect(divideNumber(5, 10)).toBe(0.5);
+    expect(divideNumber(10, 0)).toBe(
+      "Infinity can't divide by 0, Please divide by a number greater than 0"
+    );
   });
 
   test("if division params is not a number. ", () => {
-    expect(divideNumber("", undefined)).toBe("Please input a number to divide");
+    expect(divideNumber(" ", NaN)).toBe("Please input a number to divide");
     expect(divideNumber("#", 12)).toBe("Please input a number to divide");
   });
 
@@ -101,29 +103,36 @@ describe("division", () => {
 //Testing for string concatenate function
 describe("string concat", () => {
   test("concatenate and return result of two string.", () => {
-    expect(stringConcat("10", "5")).toBe("105");
     expect(stringConcat("John", "Doe")).toBe("JohnDoe");
     expect(stringConcat("-5", "10")).toBe("-510");
   });
 
   test("if concatenate params is not a number. ", () => {
-    expect(stringConcat(undefined, "")).toBe(
-      "Please input a string to concate"
-    );
+    expect(stringConcat(1, " ")).toBe("Please input a string to concate");
     expect(stringConcat("#", 120)).toBe("Please input a string to concate");
-    expect(stringConcat(23, null)).toBe("Please input a string to concate");
+  });
+  test("if any string concatenate params is empty.", () => {
+    expect(stringConcat(1)).toBe("All field are required");
+  });
+  test("if both string concatenate params are empty.", () => {
+    expect(stringConcat()).toBe("All field are required");
   });
 });
 
 //Testing for subtract function
 describe("subtract", () => {
-  test("adds the sum of two integer numbers.", () => {
+  test("subtract the value of two integer numbers.", () => {
     expect(subtractNumber(10, 5)).toBe(5);
     expect(subtractNumber(-100, -5)).toBe(-95);
   });
-  test("if add params is empty or not a number.", () => {
+  test("if subtract params is not a number.", () => {
     expect(subtractNumber("#", 12)).toBe("Please input a number to subtract");
-    expect(subtractNumber(null, "")).toBe("Please input a number to subtract");
+  });
+  test("if any string concatenate params is empty.", () => {
+    expect(subtractNumber(1)).toBe("All field are required");
+  });
+  test("if both string concatenate params are empty.", () => {
+    expect(subtractNumber()).toBe("All field are required");
   });
 });
 

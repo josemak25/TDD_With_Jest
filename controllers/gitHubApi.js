@@ -14,5 +14,3 @@ const gitHubApi = async userName => {
   }
 };
 module.exports = gitHubApi;
-
-gitHubApi("charleslukes").then(data => console.log(data));
