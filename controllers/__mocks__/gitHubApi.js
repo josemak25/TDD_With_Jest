@@ -77,6 +77,7 @@ const fetch = url => {
         node_id: "MDQ6VXNlcjMzODcwNTAy",
         avatar_url: "https://avatars3.githubusercontent.com/u/33870502?v=4"
       }
+      
     },
     {
       id: 136642660,
@@ -94,4 +95,4 @@ const fetch = url => {
   );
 };
 
-module.exports = fetch;
+exports = fetch;

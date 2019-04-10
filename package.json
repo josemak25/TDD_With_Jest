@@ -4,7 +4,7 @@
   "description": "practical code testing with jest",
   "main": "firstTest.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage --watchAll --verbose"
   },
   "repository": {
     "type": "git",

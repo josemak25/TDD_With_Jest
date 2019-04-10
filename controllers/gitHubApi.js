@@ -1,10 +1,9 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 const gitHubApi = async userName => {
-  console.log("we are sending request to the api");
-  const githubRes = await fetch(
+  const githubRes = await axios(
     `https://api.github.com/users/${userName}/repos`
   );
-  const githubUser = await githubRes.json();
+  const githubUser = await githubRes;
   if (githubUser.hasOwnProperty("message")) {
     return "User Not Found";
   } else if (githubUser.length < 1) {
@@ -13,5 +12,4 @@ const gitHubApi = async userName => {
     return githubUser.map(res => res.name);
   }
 };
-
 module.exports = gitHubApi;
