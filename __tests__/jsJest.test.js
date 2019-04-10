@@ -69,11 +69,11 @@ describe("multiply", () => {
     );
   });
 
-  test("if indefinite sum params is less than 2", () => {
+  test("if indefinite multipilication params is less than 2", () => {
     expect(multiplyIndefinite(1)).toBe("Please input a range of numbers");
   });
 
-  test("if indefinite sum params is empty.", () => {
+  test("if indefinite multipilication params is empty.", () => {
     expect(multiplyIndefinite()).toBe("All field are required");
   });
 });
