@@ -1,6 +1,6 @@
 const axios = require("axios");
+
 const gitHubApi = async userName => {
-  console.log("geting to the api");
   const githubRes = await axios.get(
     `https://api.github.com/users/${userName}/repos`
   );

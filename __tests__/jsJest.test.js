@@ -1,4 +1,5 @@
 const mockAxios = require("../controllers/__mocks__/axios");
+
 const {
   userRepoData,
   userExitNoRepo,
@@ -179,7 +180,6 @@ describe("gitHub Api mock test", () => {
   test("if a searched user exists but has no repo in his repository", async () => {
     mockAxios.get.mockImplementationOnce(() => Promise.resolve(userExitNoRepo));
     const userRepos = await gitHubApi("AbetangJoseph");
-    console.log(userRepos);
     expect(userRepos).toBe("User Has No Repositories");
   });
 
